@@ -1,4 +1,4 @@
-import {Comment, Post, User} from "./model.js";
+import {Comment, Post, User} from "../model/model.js";
 
 const userCount = 3;
 const postCountPerUser = 1;
@@ -6,31 +6,9 @@ const postCountPerUser = 1;
 const generateId = (index: number) => {
     return index.toString().padStart(2, '0');
 }
-const generatePostId = (userIndex: number, postIndex: number): string => {
-    return generateId(userIndex) + '_' + generateId(postIndex);
-}
+
 const generateCommentId = (userIndex: number, postIndex: number, commentIndex: number): string => {
     return generatePostId(userIndex, postIndex) + '_' + generateId(commentIndex);
-}
-const generateUser = (userIndex: number): User => {
-    const userId = generateId(userIndex);
-    return {
-        id: userId,
-        age: userIndex,
-        name: 'name.lastname.' + userId,
-        email: 'name.lastname.' + userId + '@gmail.com'
-    }
-}
-const generatePost = (userIndex: number, postIndex: number): Post => {
-    const userId = generateId(userIndex);
-    const postId = generatePostId(userIndex, postIndex);
-    return {
-        id: postId,
-        title: 'Post title ' + postId,
-        body: 'Post body ' + postId,
-        published: true,
-        authorId: userId
-    }
 }
 
 /**
@@ -49,6 +27,32 @@ const generateComment = (posterIndex: number, postIndex: number, commentIndex: n
         text: 'Comment text' + commentId,
         authorId: authorId,
         postId: postId
+    }
+}
+
+const generatePostId = (userIndex: number, postIndex: number): string => {
+    return generateId(userIndex) + '_' + generateId(postIndex);
+}
+
+const generatePost = (userIndex: number, postIndex: number): Post => {
+    const userId = generateId(userIndex);
+    const postId = generatePostId(userIndex, postIndex);
+    return {
+        id: postId,
+        title: 'Post title ' + postId,
+        body: 'Post body ' + postId,
+        published: true,
+        authorId: userId
+    }
+}
+
+const generateUser = (userIndex: number): User => {
+    const userId = generateId(userIndex);
+    return {
+        id: userId,
+        age: userIndex,
+        name: 'name.lastname.' + userId,
+        email: 'name.lastname.' + userId + '@gmail.com'
     }
 }
 

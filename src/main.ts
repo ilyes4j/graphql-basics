@@ -1,5 +1,5 @@
 import {GraphQLServer} from "graphql-yoga";
-import {resolvers} from "./resolvers.js";
+import {resolvers} from "./resolvers/resolvers.js";
 
 // Example usage:
 const typeDefs = 'src/contract.graphql';
